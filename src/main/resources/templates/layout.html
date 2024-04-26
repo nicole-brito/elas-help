@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">[[#{app.title}]]</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" th:href="@{/css/bulma.min.css}">
+        <link th:href="@{/css/app.css}" rel="stylesheet" />
+        <script th:src="@{/js/app.js}" defer></script>
+    </head>
+    <body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a th:href="@{/}" class="navbar-item">
+                    <img th:src="@{/images/logo.png}" th:alt="#{app.title}" width="30" height="30">
+                    <span>[[#{app.title}]]</span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a th:href="@{/}" class="navbar-item">[[#{navigation.home}]]</a>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">[[#{navigation.entities}]]</a>
+                        <div class="navbar-dropdown">
+                            <a th:href="@{/tecnicos}" class="navbar-item">[[#{tecnico.list.headline}]]</a>
+                            <a th:href="@{/chamados}" class="navbar-item">[[#{chamado.list.headline}]]</a>
+                            <a th:href="@{/clientes}" class="navbar-item">[[#{cliente.list.headline}]]</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="my-5">
+        <div class="container">
+            <div th:if="${MSG_SUCCESS}" class="notification is-success">[[${MSG_SUCCESS}]]</div>
+            <div th:if="${MSG_INFO}" class="notification is-info">[[${MSG_INFO}]]</div>
+            <div th:if="${MSG_ERROR}" class="notification is-danger">[[${MSG_ERROR}]]</div>
+            <div layout:fragment="content" />
+        </div>
+    </main>
+    </body>
+</html>
